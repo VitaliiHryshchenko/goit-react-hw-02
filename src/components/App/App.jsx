@@ -4,7 +4,7 @@ import Options from "../Options/Options";
 import Feedback from "../Feedback/Feedback";
 import Notification from "../Notification/Notification";
 
-export default function App() {
+function App() {
   const [values, setValues] = useState(() => {
     const savedValues = window.localStorage.getItem("LS-values");
 
@@ -62,3 +62,4 @@ export default function App() {
     </div>
   );
 }
+export default App;
