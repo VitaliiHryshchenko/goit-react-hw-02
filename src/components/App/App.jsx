@@ -6,19 +6,29 @@ import Notification from "../Notification/Notification";
 
 function App() {
   const [values, setValues] = useState(() => {
-    const savedValues = window.localStorage.getItem("LS-values");
+    console.log("values");
+    const savedValues = localStorage.getItem("LS-values");
 
-    return savedValues !== null
-      ? JSON.parse(savedValues)
-      : {
-          good: 0,
-          neutral: 0,
-          bad: 0,
-        };
+    // return savedValues !== null
+    //   ? JSON.parse(savedValues)
+    //   : {
+    //       good: 0,
+    //       neutral: 0,
+    //       bad: 0,
+    //     };
+    if (savedValues !== null) {
+      return JSON.parse(savedValues);
+    } else {
+      return {
+        good: 0,
+        neutral: 0,
+        bad: 0,
+      };
+    }
   });
 
   useEffect(() => {
-    window.localStorage.setItem("LS-values", JSON.stringify(values));
+    localStorage.setItem("LS-values", JSON.stringify(values));
   }, [values]);
 
   const updateFeedback = (feedbackType) => {
@@ -46,7 +56,7 @@ function App() {
     <div>
       <Description />
       <Options
-        onClick={updateFeedback}
+        updateFeedback={updateFeedback}
         totalFeedback={totalFeedback}
         resetFeedback={resetFeedback}
       />
